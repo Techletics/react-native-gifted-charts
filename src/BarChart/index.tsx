@@ -84,6 +84,7 @@ type PropTypes = {
   yAxisLabelTexts?: Array<string>;
   showRef?: Boolean;
   referenceLines: Array<referenceLine>;
+  refLeftMarginAdjustment?: number;
 };
 type referenceLine = {
   value: number;
@@ -230,6 +231,10 @@ export const BarChart = (props: PropTypes) => {
     ? props.referenceLines
     : [{color: 'lightgreen', value: maxItem / 2}];
 
+  const leftMarginAdjustment = props.refLeftMarginAdjustment
+    ? props.refLeftMarginAdjustment
+    : 30;
+
   horizSections.pop();
   for (let i = 0; i <= noOfSections; i++) {
     let value = maxValue - stepValue * i;
@@ -289,7 +294,7 @@ export const BarChart = (props: PropTypes) => {
               key={ind}
               style={[
                 {
-                  width: totalWidth - 35,
+                  width: totalWidth - leftMarginAdjustment,
                   position: 'absolute',
                   bottom: -15,
                 },
@@ -298,8 +303,9 @@ export const BarChart = (props: PropTypes) => {
                 style={[
                   styles.lastLeftPart,
                   {
-                    left: 35,
+                    left: 55,
                     bottom: (stepHeight / stepValue) * item.value,
+
                     // bottom: 0,
                   },
                 ]}>
