@@ -84,7 +84,9 @@ type PropTypes = {
   yAxisLabelTexts?: Array<string>;
   showRef?: Boolean;
   referenceLines: Array<referenceLine>;
+  refRightMarginAdjustment?: number;
   refLeftMarginAdjustment?: number;
+  chartPaddingLeft?: number;
 };
 type referenceLine = {
   value: number;
@@ -235,6 +237,14 @@ export const BarChart = (props: PropTypes) => {
     ? props.refLeftMarginAdjustment
     : 30;
 
+  const rightMarginAdjustment = props.refRightMarginAdjustment
+    ? props.refRightMarginAdjustment
+    : 55;
+
+  const chartPaddingLeft = props.chartPaddingLeft
+    ? props.chartPaddingLeft
+    : ((data && data[0] && data[0].barWidth) || props.barWidth || 30) / 2;
+
   horizSections.pop();
   for (let i = 0; i <= noOfSections; i++) {
     let value = maxValue - stepValue * i;
@@ -303,7 +313,7 @@ export const BarChart = (props: PropTypes) => {
                 style={[
                   styles.lastLeftPart,
                   {
-                    left: 55,
+                    left: rightMarginAdjustment,
                     bottom: (stepHeight / stepValue) * item.value,
 
                     // bottom: 0,
@@ -459,14 +469,13 @@ export const BarChart = (props: PropTypes) => {
             position: 'absolute',
             bottom: stepHeight * -0.5 - 60 + xAxisThickness,
           },
-          horizontal && {width: totalWidth},
+          horizontal && {width: totalWidth + 10},
         ]}
         scrollEnabled={!disableScroll}
         contentContainerStyle={{
           height: containerHeight + 130,
           width: totalWidth,
-          paddingLeft:
-            ((data && data[0] && data[0].barWidth) || props.barWidth || 30) / 2,
+          paddingLeft: chartPaddingLeft,
           alignItems: 'flex-end',
         }}
         showsHorizontalScrollIndicator={showScrollIndicator}
