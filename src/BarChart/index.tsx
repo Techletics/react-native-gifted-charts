@@ -87,6 +87,8 @@ type PropTypes = {
   refRightMarginAdjustment?: number;
   refLeftMarginAdjustment?: number;
   chartPaddingLeft?: number;
+  chartPaddingRight?: number;
+  refLineWidthPercentage?: number;
 };
 type referenceLine = {
   value: number;
@@ -152,6 +154,7 @@ export const BarChart = (props: PropTypes) => {
       // console.log('totalWidth for bar===', totalWidth);
     });
   }
+
   if (props.showFractionalValues || props.roundToDigits) {
     maxItem *= 10 * (props.roundToDigits || 1);
     maxItem = maxItem + (10 - (maxItem % 10));
@@ -237,13 +240,17 @@ export const BarChart = (props: PropTypes) => {
     ? props.refLeftMarginAdjustment
     : 30;
 
-  const rightMarginAdjustment = props.refRightMarginAdjustment
-    ? props.refRightMarginAdjustment
-    : 55;
+  const refLineWidthPercentage = props.refLineWidthPercentage
+    ? props.refLineWidthPercentage
+    : '100%';
 
   const chartPaddingLeft = props.chartPaddingLeft
     ? props.chartPaddingLeft
     : ((data && data[0] && data[0].barWidth) || props.barWidth || 30) / 2;
+
+  const chartPaddingRight = props.chartPaddingRight
+    ? props.chartPaddingRight
+    : 0;
 
   horizSections.pop();
   for (let i = 0; i <= noOfSections; i++) {
@@ -304,16 +311,17 @@ export const BarChart = (props: PropTypes) => {
               key={ind}
               style={[
                 {
-                  width: totalWidth - leftMarginAdjustment,
+                  width: refLineWidthPercentage + '%',
                   position: 'absolute',
                   bottom: -15,
+                  left: leftMarginAdjustment,
                 },
               ]}>
               <View
                 style={[
                   styles.lastLeftPart,
                   {
-                    left: rightMarginAdjustment,
+                    left: leftMarginAdjustment,
                     bottom: (stepHeight / stepValue) * item.value,
 
                     // bottom: 0,
@@ -474,9 +482,11 @@ export const BarChart = (props: PropTypes) => {
         scrollEnabled={!disableScroll}
         contentContainerStyle={{
           height: containerHeight + 130,
-          width: totalWidth,
+          width: '100%',
           paddingLeft: chartPaddingLeft,
+          paddingRight: chartPaddingRight,
           alignItems: 'flex-end',
+          justifyContent: 'space-between',
         }}
         showsHorizontalScrollIndicator={showScrollIndicator}
         horizontal
