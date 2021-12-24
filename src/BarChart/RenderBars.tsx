@@ -274,7 +274,6 @@ const RenderBars = (props: Props) => {
             ? (item.topLabelComponentHeight || 30) +
               (item.value * (containerHeight || 200)) / (maxValue || 200)
             : (item.value * (containerHeight || 200)) / (maxValue || 200),
-          marginRight: spacing,
         },
         // !isThreeD && !item.showGradient && !props.showGradient &&
         // { backgroundColor: item.frontColor || props.frontColor || 'black' },
