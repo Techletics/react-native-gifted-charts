@@ -89,6 +89,7 @@ type PropTypes = {
   chartPaddingLeft?: number;
   chartPaddingRight?: number;
   refLineWidthPercentage?: number;
+  refLineBg?: ColorValue;
 };
 type referenceLine = {
   value: number;
@@ -252,6 +253,8 @@ export const BarChart = (props: PropTypes) => {
     ? props.chartPaddingRight
     : 0;
 
+  const refLineBg = props.refLineBg ? props.refLineBg : 'white';
+
   horizSections.pop();
   for (let i = 0; i <= noOfSections; i++) {
     let value = maxValue - stepValue * i;
@@ -341,7 +344,7 @@ export const BarChart = (props: PropTypes) => {
                 <View
                   style={[
                     {
-                      backgroundColor: 'white',
+                      backgroundColor: refLineBg,
                       height: 2,
                       top: -1,
                     },
