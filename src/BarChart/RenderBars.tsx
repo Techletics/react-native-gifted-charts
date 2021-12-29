@@ -417,9 +417,7 @@ const RenderBars = (props: Props) => {
           barBorderRadius={props.barBorderRadius || 0}
         />
       )}
-      {isAnimated
-        ? renderAnimatedLabel(item.label || '', item.labelTextStyle)
-        : renderLabel(item.label || '', item.labelTextStyle)}
+      {renderLabel(item.label || '', item.labelTextStyle)}
     </TouchableOpacity>
   );
 };
