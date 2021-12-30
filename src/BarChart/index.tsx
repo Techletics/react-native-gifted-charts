@@ -314,7 +314,7 @@ export const BarChart = (props: PropTypes) => {
               key={ind}
               style={[
                 {
-                  width: refLineWidthPercentage + '%',
+                  width: refLineWidthPercentage,
                   position: 'absolute',
                   bottom: -15,
                   left: leftMarginAdjustment,
