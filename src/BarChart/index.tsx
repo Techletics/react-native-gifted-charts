@@ -335,7 +335,7 @@ export const BarChart = (props: PropTypes) => {
                     {
                       opacity: 0.5,
                       borderWidth: 1,
-                      borderStyle: 'dashed',
+                    //  borderStyle: 'dashed',
                       borderColor: item.color,
                       height: 2,
                     },
