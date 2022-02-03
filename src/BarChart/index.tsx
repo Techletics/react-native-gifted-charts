@@ -101,6 +101,7 @@ type PropTypes = {
   refLineWidthPercentage?: number;
   refLineBg?: ColorValue;
   refLineTxtStyle?: any;
+  refLineTxtBg?: ColorValue;
 };
 type referenceLine = {
   value: number;
@@ -368,7 +369,9 @@ export const BarChart = (props: PropTypes) => {
                     bottom: (stepHeight / stepValue) * item.value - 44,
                     width: 60,
                     height: 100,
-                    backgroundColor: '#ffffff',
+                    backgroundColor: props.refLineTxtBg
+                      ? props.refLineTxtBg
+                      : '#ffffff',
                     right: -50,
                     alignItems: 'flex-start',
                     justifyContent: 'center',
