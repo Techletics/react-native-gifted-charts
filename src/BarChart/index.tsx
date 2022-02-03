@@ -1,8 +1,18 @@
 import React, {useEffect} from 'react';
-import {View, FlatList, Animated, Easing, Text, ColorValue} from 'react-native';
+import {
+  View,
+  FlatList,
+  Animated,
+  Easing,
+  Text,
+  ColorValue,
+  Image,
+} from 'react-native';
 import {styles} from './styles';
 import RenderBars from './RenderBars';
 import RenderStackBars from './RenderStackBars';
+
+const img = require('./arrow.png');
 
 type PropTypes = {
   width?: number;
@@ -90,11 +100,13 @@ type PropTypes = {
   chartPaddingRight?: number;
   refLineWidthPercentage?: number;
   refLineBg?: ColorValue;
+  refLineTxtStyle?: any;
 };
 type referenceLine = {
   value: number;
   thickness: number;
   color: ColorValue;
+  showText: Boolean;
 };
 type sectionType = {
   value: string;
@@ -235,7 +247,7 @@ export const BarChart = (props: PropTypes) => {
 
   const referenceLines = props.referenceLines
     ? props.referenceLines
-    : [{color: 'lightgreen', value: maxItem / 2}];
+    : [{color: 'lightgreen', value: maxItem / 2, showText: false}];
 
   const leftMarginAdjustment = props.refLeftMarginAdjustment
     ? props.refLeftMarginAdjustment
@@ -252,6 +264,8 @@ export const BarChart = (props: PropTypes) => {
   const chartPaddingRight = props.chartPaddingRight
     ? props.chartPaddingRight
     : 0;
+
+  const refLineTxtFont = props.refLineTxtFont ? props.refLineTxtFont : null;
 
   const refLineBg = props.refLineBg ? props.refLineBg : 'white';
 
@@ -310,48 +324,74 @@ export const BarChart = (props: PropTypes) => {
       <>
         {referenceLines.map((item, ind) => {
           return (
-            <View
-              key={ind}
-              style={[
-                {
-                  width: refLineWidthPercentage,
-                  position: 'absolute',
-                  bottom: -15,
-                  left: leftMarginAdjustment,
-                },
-              ]}>
+            <>
               <View
+                key={ind}
                 style={[
-                  styles.lastLeftPart,
                   {
+                    width: refLineWidthPercentage,
+                    position: 'absolute',
+                    bottom: -15,
                     left: leftMarginAdjustment,
-                    bottom: (stepHeight / stepValue) * item.value,
-
-                    // bottom: 0,
                   },
                 ]}>
                 <View
                   style={[
+                    styles.lastLeftPart,
                     {
-                      opacity: 0.5,
-                      borderWidth: 1,
-                    //  borderStyle: 'dashed',
-                      borderColor: item.color,
-                      height: 2,
+                      left: leftMarginAdjustment,
+                      bottom: (stepHeight / stepValue) * item.value,
+
+                      // bottom: 0,
                     },
-                  ]}
-                />
-                <View
-                  style={[
-                    {
-                      backgroundColor: refLineBg,
-                      height: 2,
-                      top: -1,
-                    },
-                  ]}
-                />
+                  ]}>
+                  <View
+                    style={[
+                      {
+                        opacity: 0.5,
+                        // borderStyle: 'dashed',
+                        shadowColor: 'grey',
+                        shadowOffset: {width: 4, height: 4},
+                        shadowOpacity: 0.5,
+                        shadowRadius: 1,
+                        backgroundColor: item.color,
+                        height: 1,
+                      },
+                    ]}
+                  />
+                </View>
               </View>
-            </View>
+              {item.showText ? (
+                <View
+                  style={{
+                    position: 'absolute',
+                    bottom: (stepHeight / stepValue) * item.value - 44,
+                    width: 60,
+                    height: 100,
+                    backgroundColor: '#ffffff',
+                    right: -50,
+                    alignItems: 'flex-start',
+                    justifyContent: 'center',
+                    paddingLeft: 10,
+                  }}>
+                  <Image
+                    source={img}
+                    style={{height: 40, width: 30}}
+                    resizeMode="contain"
+                    fadeDuration={0}
+                  />
+                  <Text
+                    numberOfLines={1}
+                    ellipsizeMode={'clip'}
+                    style={[
+                      yAxisTextStyle,
+                      props.refLineTxtStyle ? props.refLineTxtStyle : '',
+                    ]}>
+                    Goal
+                  </Text>
+                </View>
+              ) : null}
+            </>
           );
         })}
       </>
