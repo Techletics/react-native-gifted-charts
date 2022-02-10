@@ -356,7 +356,7 @@ export const BarChart = (props: PropTypes) => {
                         shadowOpacity: 0.5,
                         shadowRadius: 1,
                         backgroundColor: item.color,
-                        height: 1,
+                        height: 2,
                       },
                     ]}
                   />
@@ -366,7 +366,7 @@ export const BarChart = (props: PropTypes) => {
                 <View
                   style={{
                     position: 'absolute',
-                    bottom: (stepHeight / stepValue) * item.value - 44,
+                    bottom: (stepHeight / stepValue) * item.value - 46,
                     width: 60,
                     height: 100,
                     backgroundColor: props.refLineTxtBg
@@ -387,6 +387,7 @@ export const BarChart = (props: PropTypes) => {
                     numberOfLines={1}
                     ellipsizeMode={'clip'}
                     style={[
+                      {marginTop: -5},
                       yAxisTextStyle,
                       props.refLineTxtStyle ? props.refLineTxtStyle : '',
                     ]}>
