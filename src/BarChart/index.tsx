@@ -102,6 +102,7 @@ type PropTypes = {
   refLineBg?: ColorValue;
   refLineTxtStyle?: any;
   refLineTxtBg?: ColorValue;
+  refLineArrowOffset?: number;
 };
 type referenceLine = {
   value: number;
@@ -193,6 +194,7 @@ export const BarChart = (props: PropTypes) => {
   const animationEasing = props.animationEasing || Easing.ease;
   const opacity = props.opacity || 1;
   const isThreeD = props.isThreeD || false;
+  const refLineArrowOffset = props.refLineArrowOffset || 0;
 
   const showVerticalLines = props.showVerticalLines || false;
   const rulesThickness =
@@ -379,7 +381,11 @@ export const BarChart = (props: PropTypes) => {
                   }}>
                   <Image
                     source={img}
-                    style={{height: 40, width: 30}}
+                    style={{
+                      height: 40,
+                      width: 30,
+                      marginLeft: refLineArrowOffset,
+                    }}
                     resizeMode="contain"
                     fadeDuration={0}
                   />
