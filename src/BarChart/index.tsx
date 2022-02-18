@@ -103,6 +103,9 @@ type PropTypes = {
   refLineTxtStyle?: any;
   refLineTxtBg?: ColorValue;
   refLineArrowOffset?: number;
+  noDataText: String;
+  noDataTextStyle: any;
+  allarezero: Boolean;
 };
 type referenceLine = {
   value: number;
@@ -213,6 +216,9 @@ export const BarChart = (props: PropTypes) => {
   const xAxisIndicesWidth = props.xAxisIndicesWidth || 4;
   const xAxisIndicesColor = props.xAxisIndicesColor || 'black';
   const yAxisIndicesColor = props.yAxisIndicesColor || 'black';
+  const noDataText = props.noDataText || 'No data available yet';
+  const noDataTextStyle = props.noDataTextStyle || {fontSize: 16};
+  const allarezero = props.allarezero || false;
 
   const xAxisThickness =
     props.xAxisThickness === 0
@@ -621,6 +627,20 @@ export const BarChart = (props: PropTypes) => {
           );
         }}
       />
+      {allarezero ? (
+        <View
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 50,
+            right: 0,
+            bottom: -20,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <Text style={noDataTextStyle}>{noDataText}</Text>
+        </View>
+      ) : null}
     </View>
   );
 };
