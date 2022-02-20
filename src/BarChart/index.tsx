@@ -363,7 +363,7 @@ export const BarChart = (props: PropTypes) => {
                         //shadowOffset: {width: 4, height: 4},
                         //shadowOpacity: 0.5,
                         //shadowRadius: 1,
-                        backgroundColor: item.color,
+                        backgroundColor: '#900',
                         height: 2,
                       },
                     ]}
