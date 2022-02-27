@@ -386,7 +386,7 @@ export const BarChart = (props: PropTypes) => {
                     justifyContent: 'center',
                     paddingLeft: 10,
                   }}>
-                  {/* <Image
+                  <Image
                     source={img}
                     style={{
                       height: 40,
@@ -395,7 +395,7 @@ export const BarChart = (props: PropTypes) => {
                     }}
                     resizeMode="contain"
                     fadeDuration={0}
-                  /> */}
+                  />
                   <Text
                     numberOfLines={1}
                     ellipsizeMode={'clip'}
