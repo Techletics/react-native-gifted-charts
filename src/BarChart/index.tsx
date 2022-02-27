@@ -389,7 +389,7 @@ export const BarChart = (props: PropTypes) => {
                   <Image
                     source={img}
                     style={{
-                      height: 30,
+                      height: 25,
                       width: 30,
                       marginLeft: refLineArrowOffset,
                     }}
