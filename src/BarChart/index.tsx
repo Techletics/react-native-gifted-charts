@@ -105,6 +105,7 @@ type PropTypes = {
   refLineArrowOffset?: number;
   noDataText: String;
   noDataTextStyle: any;
+  goalTextStyle: any;
   allarezero: Boolean;
 };
 type referenceLine = {
@@ -401,7 +402,7 @@ export const BarChart = (props: PropTypes) => {
                     style={[
                       {marginTop: -5},
                       yAxisTextStyle,
-                      props.refLineTxtStyle ? props.refLineTxtStyle : '',
+                      props.goalTextStyle,
                     ]}>
                     Goal
                   </Text>
