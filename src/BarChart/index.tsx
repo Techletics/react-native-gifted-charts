@@ -389,7 +389,7 @@ export const BarChart = (props: PropTypes) => {
                   <Image
                     source={img}
                     style={{
-                      height: 40,
+                      height: 30,
                       width: 30,
                       marginLeft: refLineArrowOffset,
                     }}
@@ -400,7 +400,7 @@ export const BarChart = (props: PropTypes) => {
                     numberOfLines={1}
                     ellipsizeMode={'clip'}
                     style={[
-                      {marginTop: -5},
+                      {marginTop: 5},
                       yAxisTextStyle,
                       props.goalTextStyle,
                     ]}>
