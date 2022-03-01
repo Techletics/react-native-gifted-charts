@@ -358,12 +358,6 @@ export const BarChart = (props: PropTypes) => {
                   <View
                     style={[
                       {
-                        opacity: 0.5,
-                        // borderStyle: 'dashed',
-                        //shadowColor: 'grey',
-                        //shadowOffset: {width: 4, height: 4},
-                        //shadowOpacity: 0.5,
-                        //shadowRadius: 1,
                         backgroundColor: item.color,
                         height: 2,
                       },
