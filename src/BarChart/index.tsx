@@ -107,6 +107,7 @@ type PropTypes = {
   noDataTextStyle: any;
   goalTextStyle: any;
   allarezero: Boolean;
+  refLineTxtOffset?: number;
 };
 type referenceLine = {
   value: number;
@@ -220,6 +221,7 @@ export const BarChart = (props: PropTypes) => {
   const noDataText = props.noDataText || 'No data available yet';
   const noDataTextStyle = props.noDataTextStyle || {fontSize: 16};
   const allarezero = props.allarezero || false;
+  const refLineTxtOffset = props.refLineTxtOffset || -50;
 
   const xAxisThickness =
     props.xAxisThickness === 0
@@ -375,7 +377,7 @@ export const BarChart = (props: PropTypes) => {
                     backgroundColor: props.refLineTxtBg
                       ? props.refLineTxtBg
                       : '#ffffff',
-                    right: -50,
+                    right: refLineTxtOffset,
                     alignItems: 'flex-start',
                     justifyContent: 'center',
                     paddingLeft: 10,
@@ -523,7 +525,7 @@ export const BarChart = (props: PropTypes) => {
         horizontal && {transform: [{rotate: '90deg'}, {translateY: -15}]},
       ]}>
       {props.hideAxesAndRules !== true && renderHorizSections()}
-      {showRef !== false && renderRefLines()}
+
       <FlatList
         style={[
           {
@@ -622,6 +624,7 @@ export const BarChart = (props: PropTypes) => {
           );
         }}
       />
+      {showRef !== false && renderRefLines()}
       {allarezero ? (
         <View
           style={{
