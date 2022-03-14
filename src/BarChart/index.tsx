@@ -106,8 +106,10 @@ type PropTypes = {
   noDataText: String;
   noDataTextStyle: any;
   goalTextStyle: any;
+  goalTextWidth: number;
   allarezero: Boolean;
   refLineTxtOffset?: number;
+  goalTextTopOffset: number;
 };
 type referenceLine = {
   value: number;
@@ -371,8 +373,10 @@ export const BarChart = (props: PropTypes) => {
                 <View
                   style={{
                     position: 'absolute',
-                    bottom: (stepHeight / stepValue) * item.value - 46,
-                    width: 60,
+                    bottom:
+                      (stepHeight / stepValue) * item.value -
+                      (props.goalTextTopOffset ? props.goalTextTopOffset : 48),
+                    width: props.goalTextWidth ? props.goalTextWidth : 60,
                     height: 100,
                     backgroundColor: props.refLineTxtBg
                       ? props.refLineTxtBg
