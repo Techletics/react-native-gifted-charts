@@ -110,6 +110,7 @@ type PropTypes = {
   allarezero: Boolean;
   refLineTxtOffset?: number;
   goalTextTopOffset: number;
+  heightAdjustment: number;
 };
 type referenceLine = {
   value: number;
@@ -624,6 +625,7 @@ export const BarChart = (props: PropTypes) => {
               horizontal={horizontal}
               intactTopLabel={intactTopLabel}
               barBorderRadius={props.barBorderRadius}
+              heightAdjustment={props.heightAdjustment}
             />
           );
         }}

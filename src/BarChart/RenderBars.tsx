@@ -57,6 +57,7 @@ type Props = {
   horizontal: Boolean;
   intactTopLabel: Boolean;
   barBorderRadius?: number;
+  heightAdjustment?: number;
 };
 type itemType = {
   value?: number;
@@ -93,6 +94,7 @@ const RenderBars = (props: Props) => {
     data,
     // oldValue,
 
+    heightAdjustment,
     isThreeD,
     isAnimated,
     rotateLabel,
@@ -284,7 +286,7 @@ const RenderBars = (props: Props) => {
           style={{
             zIndex: props.verticalLinesZIndex,
             position: 'absolute',
-            height: (containerHeight || 200) + 15,
+            height: containerHeight + (heightAdjustment ? heightAdjustment : 0),
             width: props.verticalLinesThickness,
             bottom: 0,
             left: (item.barWidth || props.barWidth || 30) / 2,
