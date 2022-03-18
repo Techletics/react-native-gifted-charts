@@ -7,6 +7,7 @@ import {
   Text,
   ColorValue,
   Image,
+  Dimensions,
 } from 'react-native';
 import {styles} from './styles';
 import RenderBars from './RenderBars';
@@ -98,7 +99,7 @@ type PropTypes = {
   refLeftMarginAdjustment?: number;
   chartPaddingLeft?: number;
   chartPaddingRight?: number;
-  refLineWidthPercentage?: number;
+  refLineWidthOffset?: number;
   refLineBg?: ColorValue;
   refLineTxtStyle?: any;
   refLineTxtBg?: ColorValue;
@@ -268,9 +269,9 @@ export const BarChart = (props: PropTypes) => {
     ? props.refLeftMarginAdjustment
     : 30;
 
-  const refLineWidthPercentage = props.refLineWidthPercentage
-    ? props.refLineWidthPercentage
-    : '100%';
+  const refLineWidthOffset = props.refLineWidthOffset
+    ? props.refLineWidthOffset
+    : 160;
 
   const chartPaddingLeft = props.chartPaddingLeft
     ? props.chartPaddingLeft
@@ -344,7 +345,7 @@ export const BarChart = (props: PropTypes) => {
                 key={ind}
                 style={[
                   {
-                    width: refLineWidthPercentage,
+                    width: Dimensions.get('screen').width - refLineWidthOffset,
                     position: 'absolute',
                     bottom: -15,
                     left: leftMarginAdjustment,
@@ -370,6 +371,7 @@ export const BarChart = (props: PropTypes) => {
                   />
                 </View>
               </View>
+              <View style={{flex: 1, height: 2, backgroundColor: 'red'}} />
               {item.showText ? (
                 <View
                   style={{
@@ -379,9 +381,6 @@ export const BarChart = (props: PropTypes) => {
                       (props.goalTextTopOffset ? props.goalTextTopOffset : 48),
                     width: props.goalTextWidth ? props.goalTextWidth : 60,
                     height: 100,
-                    backgroundColor: props.refLineTxtBg
-                      ? props.refLineTxtBg
-                      : '#ffffff',
                     right: refLineTxtOffset,
                     alignItems: 'flex-start',
                     justifyContent: 'center',
