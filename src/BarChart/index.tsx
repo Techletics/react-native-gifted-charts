@@ -519,7 +519,7 @@ export const BarChart = (props: PropTypes) => {
   };
 
   return (
-    <View
+    <Animated.View
       style={[
         styles.container,
         {
@@ -644,6 +644,6 @@ export const BarChart = (props: PropTypes) => {
           <Text style={noDataTextStyle}>{noDataText}</Text>
         </View>
       ) : null}
-    </View>
+    </Animated.View>
   );
 };
