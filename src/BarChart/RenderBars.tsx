@@ -264,7 +264,7 @@ const RenderBars = (props: Props) => {
 
   return (
     <TouchableOpacity
-      disabled={item.disablePress || props.disablePress}
+      disabled={item.value > 0 ? false : true}
       activeOpacity={props.activeOpacity || 0.2}
       onPress={item.onPress}
       hitSlop={{top: 15, left: -15, right: -15, bottom: 15}}
