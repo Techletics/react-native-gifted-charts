@@ -364,43 +364,33 @@ export const BarChart = (props: PropTypes) => {
                   <View
                     style={[
                       {
-                        backgroundColor: item.color,
+                        borderColor: item.color,
+                        borderWidth: 1,
+                        borderStyle: 'dashed',
                         height: 2,
                       },
                     ]}
                   />
                 </View>
               </View>
-              <View style={{flex: 1, height: 2, backgroundColor: 'red'}} />
+              <View style={{flex: 1, height: 2}} />
               {item.showText ? (
                 <View
                   style={{
                     position: 'absolute',
-                    bottom:
-                      (stepHeight / stepValue) * item.value -
-                      (props.goalTextTopOffset ? props.goalTextTopOffset : 48),
+                    bottom: (stepHeight / stepValue) * item.value - 19,
                     width: props.goalTextWidth ? props.goalTextWidth : 60,
-                    height: 100,
+                    height: 10,
                     right: refLineTxtOffset,
                     alignItems: 'flex-start',
                     justifyContent: 'center',
                     paddingLeft: 10,
                   }}>
-                  <Image
-                    source={img}
-                    style={{
-                      height: 25,
-                      width: 30,
-                      marginLeft: refLineArrowOffset,
-                    }}
-                    resizeMode="contain"
-                    fadeDuration={0}
-                  />
                   <Text
                     numberOfLines={1}
                     ellipsizeMode={'clip'}
                     style={[
-                      {marginTop: 5},
+                      {marginTop: 0},
                       yAxisTextStyle,
                       props.goalTextStyle,
                     ]}>
