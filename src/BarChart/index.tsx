@@ -379,7 +379,9 @@ export const BarChart = (props: PropTypes) => {
                 <View
                   style={{
                     position: 'absolute',
-                    bottom: (stepHeight / stepValue) * item.value - 19,
+                    bottom:
+                      (stepHeight / stepValue) * item.value -
+                      (props.goalTextTopOffset ? props.goalTextTopOffset : 19),
                     width: props.goalTextWidth ? props.goalTextWidth : 60,
                     height: 10,
                     right: refLineTxtOffset,
