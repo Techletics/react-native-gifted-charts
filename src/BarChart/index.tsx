@@ -357,7 +357,8 @@ export const BarChart = (props: PropTypes) => {
                     {
                       left: leftMarginAdjustment,
                       bottom: (stepHeight / stepValue) * item.value,
-
+                      overflow: 'hidden',
+                      height: 1,
                       // bottom: 0,
                     },
                   ]}>
